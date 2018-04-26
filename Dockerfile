@@ -2,9 +2,11 @@
 # FROM python:3.6-stretch
 FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
 
-RUN apt-get update -y && apt-get install -y software-properties-common \
-       && wget -qO - 'https://packages.confluent.io/deb/4.0/archive.key' | apt-key add - \
-       && add-apt-repository "deb [arch=amd64] https://packages.confluent.io/deb/4.0 stable main" \
+RUN apt-get update -y && apt-get install -y software-properties-common 
+
+RUN wget -qO - 'https://packages.confluent.io/deb/4.0/archive.key' 
+RUN apt-key add -
+RUN add-apt-repository "deb [arch=amd64] https://packages.confluent.io/deb/4.0 stable main" \
        && apt-get install -y librdkafka-dev librdkafka1 
 
 RUN apt-get update && apt-get install -y \
